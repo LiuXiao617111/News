@@ -44,7 +44,13 @@
         <div class="editor-field">
             @Html.DropDownList("ClassList", (IEnumerable<SelectListItem>)ViewBag.TypeList, new { required = "required" })
         </div>
-
+        
+        <div class="editor-label">
+            图片：
+        </div>
+        <div class="editor-field">
+            <img src="@Url.Action("GetImage","Admin",new{@id=Model.ID})"/>
+        </div>
         <p>
             <input type="submit" value="保存" />
         </p>
