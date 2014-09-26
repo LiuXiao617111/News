@@ -31,14 +31,14 @@
       <Column Name="TypeID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="News_Comment" Member="Comment" ThisKey="ID" OtherKey="NewsID" Type="Comment" />
       <Association Name="User_News" Member="User" ThisKey="UserID" OtherKey="UserID" Type="User" IsForeignKey="true" />
-      <Association Name="NewsType_News" Member="NewsType" ThisKey="TypeID" OtherKey="ID" Type="NewsType" IsForeignKey="true" />
+      <Association Name="NewsTypes_News" Member="NewsTypes" ThisKey="TypeID" OtherKey="ID" Type="NewsTypes" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.NewsType" Member="NewsType">
-    <Type Name="NewsType">
+  <Table Name="dbo.NewsTypes" Member="NewsTypes">
+    <Type Name="NewsTypes">
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="NewsType" Member="NewsType1" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
-      <Association Name="NewsType_News" Member="News" ThisKey="ID" OtherKey="TypeID" Type="News" />
+      <Column Name="NewsType" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Association Name="NewsTypes_News" Member="News" ThisKey="ID" OtherKey="TypeID" Type="News" />
     </Type>
   </Table>
 </Database>

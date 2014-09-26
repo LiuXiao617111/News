@@ -39,9 +39,9 @@ namespace NewsExercise.Models
     partial void InsertNews(News instance);
     partial void UpdateNews(News instance);
     partial void DeleteNews(News instance);
-    partial void InsertNewsType(NewsType instance);
-    partial void UpdateNewsType(NewsType instance);
-    partial void DeleteNewsType(NewsType instance);
+    partial void InsertNewsTypes(NewsTypes instance);
+    partial void UpdateNewsTypes(NewsTypes instance);
+    partial void DeleteNewsTypes(NewsTypes instance);
     #endregion
 		
 		public DataClassesNewsDataContext() : 
@@ -98,11 +98,11 @@ namespace NewsExercise.Models
 			}
 		}
 		
-		public System.Data.Linq.Table<NewsType> NewsType
+		public System.Data.Linq.Table<NewsTypes> NewsTypes
 		{
 			get
 			{
-				return this.GetTable<NewsType>();
+				return this.GetTable<NewsTypes>();
 			}
 		}
 	}
@@ -494,7 +494,7 @@ namespace NewsExercise.Models
 		
 		private EntityRef<User> _User;
 		
-		private EntityRef<NewsType> _NewsType;
+		private EntityRef<NewsTypes> _NewsTypes;
 		
     #region 可扩展性方法定义
     partial void OnLoaded();
@@ -522,7 +522,7 @@ namespace NewsExercise.Models
 		{
 			this._Comment = new EntitySet<Comment>(new Action<Comment>(this.attach_Comment), new Action<Comment>(this.detach_Comment));
 			this._User = default(EntityRef<User>);
-			this._NewsType = default(EntityRef<NewsType>);
+			this._NewsTypes = default(EntityRef<NewsTypes>);
 			OnCreated();
 		}
 		
@@ -681,7 +681,7 @@ namespace NewsExercise.Models
 			{
 				if ((this._TypeID != value))
 				{
-					if (this._NewsType.HasLoadedOrAssignedValue)
+					if (this._NewsTypes.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -741,26 +741,26 @@ namespace NewsExercise.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="NewsType_News", Storage="_NewsType", ThisKey="TypeID", OtherKey="ID", IsForeignKey=true)]
-		public NewsType NewsType
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="NewsTypes_News", Storage="_NewsTypes", ThisKey="TypeID", OtherKey="ID", IsForeignKey=true)]
+		public NewsTypes NewsTypes
 		{
 			get
 			{
-				return this._NewsType.Entity;
+				return this._NewsTypes.Entity;
 			}
 			set
 			{
-				NewsType previousValue = this._NewsType.Entity;
+				NewsTypes previousValue = this._NewsTypes.Entity;
 				if (((previousValue != value) 
-							|| (this._NewsType.HasLoadedOrAssignedValue == false)))
+							|| (this._NewsTypes.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._NewsType.Entity = null;
+						this._NewsTypes.Entity = null;
 						previousValue.News.Remove(this);
 					}
-					this._NewsType.Entity = value;
+					this._NewsTypes.Entity = value;
 					if ((value != null))
 					{
 						value.News.Add(this);
@@ -770,7 +770,7 @@ namespace NewsExercise.Models
 					{
 						this._TypeID = default(int);
 					}
-					this.SendPropertyChanged("NewsType");
+					this.SendPropertyChanged("NewsTypes");
 				}
 			}
 		}
@@ -808,15 +808,15 @@ namespace NewsExercise.Models
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.NewsType")]
-	public partial class NewsType : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.NewsTypes")]
+	public partial class NewsTypes : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
 		private int _ID;
 		
-		private string _NewsType1;
+		private string _NewsType;
 		
 		private EntitySet<News> _News;
 		
@@ -826,11 +826,11 @@ namespace NewsExercise.Models
     partial void OnCreated();
     partial void OnIDChanging(int value);
     partial void OnIDChanged();
-    partial void OnNewsType1Changing(string value);
-    partial void OnNewsType1Changed();
+    partial void OnNewsTypeChanging(string value);
+    partial void OnNewsTypeChanged();
     #endregion
 		
-		public NewsType()
+		public NewsTypes()
 		{
 			this._News = new EntitySet<News>(new Action<News>(this.attach_News), new Action<News>(this.detach_News));
 			OnCreated();
@@ -856,27 +856,27 @@ namespace NewsExercise.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="NewsType", Storage="_NewsType1", DbType="NChar(10) NOT NULL", CanBeNull=false)]
-		public string NewsType1
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NewsType", DbType="NChar(10) NOT NULL", CanBeNull=false)]
+		public string NewsType
 		{
 			get
 			{
-				return this._NewsType1;
+				return this._NewsType;
 			}
 			set
 			{
-				if ((this._NewsType1 != value))
+				if ((this._NewsType != value))
 				{
-					this.OnNewsType1Changing(value);
+					this.OnNewsTypeChanging(value);
 					this.SendPropertyChanging();
-					this._NewsType1 = value;
-					this.SendPropertyChanged("NewsType1");
-					this.OnNewsType1Changed();
+					this._NewsType = value;
+					this.SendPropertyChanged("NewsType");
+					this.OnNewsTypeChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="NewsType_News", Storage="_News", ThisKey="ID", OtherKey="TypeID")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="NewsTypes_News", Storage="_News", ThisKey="ID", OtherKey="TypeID")]
 		public EntitySet<News> News
 		{
 			get
@@ -912,13 +912,13 @@ namespace NewsExercise.Models
 		private void attach_News(News entity)
 		{
 			this.SendPropertyChanging();
-			entity.NewsType = this;
+			entity.NewsTypes = this;
 		}
 		
 		private void detach_News(News entity)
 		{
 			this.SendPropertyChanging();
-			entity.NewsType = null;
+			entity.NewsTypes = null;
 		}
 	}
 }

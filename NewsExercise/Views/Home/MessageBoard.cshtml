@@ -1,0 +1,18 @@
+﻿@model IEnumerable<NewsExercise.Models.Comment>
+<table>
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            留言人:@Html.DisplayFor(modelItem => item.Autor)
+        </td>
+        <td>
+            留言时间:@Html.DisplayFor(modelItem => item.Time)
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Message)
+        </td>
+    </tr>
+}
+</table>

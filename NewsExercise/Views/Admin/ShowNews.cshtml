@@ -1,0 +1,26 @@
+﻿@model IEnumerable<NewsExercise.Models.News>
+
+@{
+    ViewBag.Title = "ShowNews";
+    Layout = "~/Views/_LayoutPage.cshtml";
+}
+
+<table>
+@foreach (var item in Model) {
+    <tr>
+        <td style="width:70%">
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            作者：@Html.DisplayFor(modelItem => item.User.UserName)
+        </td>
+        <td>
+            @Html.ActionLink("修改", "EditNews", new { id = item.ID });
+        </td>
+        <td>
+            @Html.ActionLink("删除", "DelNews", new { id = item.ID });
+        </td>
+    </tr>
+}
+
+</table>

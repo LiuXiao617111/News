@@ -1,0 +1,26 @@
+﻿@model IEnumerable<NewsExercise.Models.NewsTypes>
+
+@{
+    ViewBag.Title = "EditTitle";
+    Layout = "~/Views/_LayoutPage.cshtml";
+}
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NewsType)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NewsType)
+        </td>
+        <td>
+            @Html.ActionLink("修改", "EditTitle", new { id = item.ID }) |
+            @Html.ActionLink("删除", "DelectTitle", new { id=item.ID }) |
+        </td>
+    </tr>
+}
+</table>

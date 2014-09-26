@@ -1,0 +1,68 @@
+﻿@model NewsExercise.Models.News
+
+@{
+    ViewBag.Title = "AddNews";
+    Layout = "~/Views/_LayoutPage.cshtml";
+}
+<div>
+    <h2>AddNews</h2>
+    @using (Html.BeginForm("CreateNews", "Admin", FormMethod.Post,new{ enctype = "multipart/form-data"}))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        <fieldset>
+            <legend>添加新闻</legend>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.TypeID)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownList("ClassList", (IEnumerable<SelectListItem>)ViewBag.TypeList, new { required = "required" })
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Title)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Title)
+                @Html.ValidationMessageFor(model => model.Title)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.User.UserName)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.User.UserName)
+                @Html.ValidationMessageFor(model => model.User.UserName)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Abstract)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Abstract)
+                @Html.ValidationMessageFor(model => model.Abstract)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.NewContext)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.NewContext)
+                @Html.ValidationMessageFor(model => model.NewContext)
+            </div>
+            
+            <div class="editor-label">
+                @*@Html.LabelFor(model => model.Image)*@
+                图片：
+            </div>
+            <div class="editor-field">
+                <input type="file" name="fileUpload"/>
+            </div>
+
+            <p>
+                <input type="submit" value="创建" />
+            </p>
+        </fieldset>
+    }
+</div>

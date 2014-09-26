@@ -1,0 +1,34 @@
+﻿@model NewsExercise.Models.NewsTypes
+
+@{
+    ViewBag.Title = "EditTitle";
+    Layout = "~/Views/_LayoutPage.cshtml";
+}
+@using (Html.BeginForm("SaveTitle", "Admin", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>NewsTypes</legend>
+
+        @Html.HiddenFor(model => model.ID)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.NewsType)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.NewsType)
+            @Html.ValidationMessageFor(model => model.NewsType)
+        </div>
+
+        <p>
+            <input type="submit" value="保存" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index","Home")
+</div>
+
